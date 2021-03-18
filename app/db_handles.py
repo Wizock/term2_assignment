@@ -23,7 +23,6 @@ def create_table():
     con.commit()
     con.close()
 
-create_table()
 
 def register_user(email, username, password, password2):
   try:
