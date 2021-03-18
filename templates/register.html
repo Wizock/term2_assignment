@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>
+			Simple Form Application
+		</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	</head>
+	<body style="text-align: center; background: #DF2B4F">
+		
+		<div class='container' style="text-align:center;">
+			<div class='card' style='margin-top:30px;' width='20rem;'>
+				<div class='card-body'>
+				<a href="/"style=" float:left;"> <img src="static/icons/back.svg"> </a>
+					<br><h2 class="card-title">Register</h2>
+					<form method="post" class='form-group'>
+					
+						<input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+												
+						<input name="username" style='margin-top:10px;' type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter Username">
+											
+						<input name="password" style='margin-top:10px;' type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Enter Password">
+								
+						<input name="password2" style='margin-top:10px;' type="password" class="form-control" id="password2" aria-describedby="passwordHelp" placeholder="Confirm Password">				
+					
+						<a href="/reg"><button class='btn btn-success' style='margin-top:10px;'>Register</button></a>
+					</form>
+					<p> if you have a account please <a href="/login">login</a></p><br>
+		</div>
+	</body>
+</html>
