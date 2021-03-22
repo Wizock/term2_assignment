@@ -1,13 +1,16 @@
+from flask import Flask, render_template, request, redirect
+from flask.helpers import flash
+from .db_handles import *
 import sqlite3
 import os
-from flask_login import LoginManager
-from flask import Flask, render_template, request, redirect, login_required
-from db_handles import *
-from flask.helpers import flash
+
+from flask import Flask
+
+app = Flask(__name__)
 
 @app.route("/")
 @app.route('/home')
-@login_required 
+
 def home():
     return render_template('index.html')
 
@@ -15,7 +18,7 @@ def home():
 @app.route('/login', methods=("GET", "POST"))
 def login():
     
-    if request.method == "GET":
+    if request.method == "POST":
         email = request.form['email']
         password = request.form['password']
         db = db_var()
