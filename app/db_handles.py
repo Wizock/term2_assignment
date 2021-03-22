@@ -35,7 +35,10 @@ def register_user(email, username, password, password2):
 def login_user(email, password):
   try:
     db = db_var()
-    db.execute("SELECT email, password FROM users WHERE email = ? AND password = ?",(email, password))
-    db.commit() and db.close()
+    login_flag = db.execute("SELECT email, password FROM users WHERE email = ? AND password = ?",(email, password))
+    if login_flag == False or None:
+      return False
+    else:
+      return True
   except sqlite3.OperationalError as e:
       print(e)

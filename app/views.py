@@ -25,8 +25,10 @@ def login():
         check_email = db.execute("SELECT * FROM users WHERE email= ?",(email))
         check_password = db.execute("SELECT * FROM users WHERE password = ?",(password))
         if email == check_email and password == check_password:
-            login_user(email, password)
-            flash("you were sucessfully logged in")
+            if login_user(email, password) == True:
+                flash("you were sucessfully logged in")
+            else:
+                flash("There was a error while logging in, please try again.")
     else:
         return render_template('login.html')
 
