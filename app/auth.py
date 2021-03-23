@@ -1,6 +1,7 @@
+from app.database.db_handles import db_var, login_user, register_user
 from flask import Flask, render_template, request, redirect, Blueprint
 from flask.helpers import flash
-from .db_handles import *
+from .database import *
 
 auth = Blueprint('auth', __name__)
 

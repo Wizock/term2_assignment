@@ -1,14 +1,5 @@
 import os, sqlite3
-from .database import DBLOCATION
-def db_var():
-    try:
-        con = sqlite3.connect(DBLOCATION)
-    except sqlite3.OperationalError as e:
-      if e.args[0].startswith('no such table'):
-        exists = False
-      else:
-        raise
-    return con
+from .__init__ import DBLOCATION, db_var
 
 def create_table():
     con = db_var()
