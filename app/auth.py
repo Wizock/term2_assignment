@@ -1,21 +1,10 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, Blueprint
 from flask.helpers import flash
 from .db_handles import *
-import sqlite3
-import os
 
-from flask import Flask
+auth = Blueprint('auth', __name__)
 
-app = Flask(__name__)
-
-@app.route("/")
-@app.route('/home')
-
-def home():
-    return render_template('index.html')
-
-
-@app.route('/login', methods=("GET", "POST"))
+@auth.route('/login', methods=("GET", "POST"))
 def login():
     
     if request.method == "POST":
@@ -26,13 +15,13 @@ def login():
         check_password = db.execute("SELECT * FROM users WHERE password = ?",(password))
         if email == check_email and password == check_password:
             if login_user(email, password) == True:
-                flash("you were sucessfully logged in")
+                flash("you were successfully logged in")
             else:
                 flash("There was a error while logging in, please try again.")
     else:
         return render_template('login.html')
 
-@app.route('/reg', methods=("GET", "POST"))
+@auth.route('/reg', methods=("GET", "POST"))
 def reg():
     if request.method == "POST":
         email = request.form['email']

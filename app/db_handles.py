@@ -1,8 +1,8 @@
 import os, sqlite3
-
+from .database import DBLOCATION
 def db_var():
     try:
-        con = sqlite3.connect(os.getcwd() + '/example.db')
+        con = sqlite3.connect(DBLOCATION)
     except sqlite3.OperationalError as e:
       if e.args[0].startswith('no such table'):
         exists = False
@@ -42,3 +42,5 @@ def login_user(email, password):
       return True
   except sqlite3.OperationalError as e:
       print(e)
+
+  
