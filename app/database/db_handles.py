@@ -1,19 +1,6 @@
 import os, sqlite3
+import csv
 from .__init__ import DBLOCATION, db_var
-
-def create_table():
-    con = db_var()
-    con.execute('''
-        CREATE TABLE users (
-            id INTEGER PRIMARY KEY,
-            email VARCHAR(255) NOT NULL,
-            username VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL
-            )
-            ''')
-    con.commit()
-    con.close()
-
 
 def register_user(email, username, password, password2):
   try:
@@ -33,5 +20,4 @@ def login_user(email, password):
       return True
   except sqlite3.OperationalError as e:
       print(e)
-
-  
+      

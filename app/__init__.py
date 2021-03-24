@@ -1,12 +1,11 @@
-from app.database.csv_reader import create_table_library
 from flask import Flask, app
 from flask.helpers import url_for
 
 def create_app():
     app = Flask(__name__)
-    from .dashboard import dashboard
-    from .auth import auth
-    from .library import library as libraryviews
+    from .dashboard import dashboard # profile pages, personal infomation and data access
+    from .auth import auth # small routing group | used to authenticate or register a user
+    from .library import library as libraryviews # library data operation routes. 
     
     app.register_blueprint(dashboard, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
