@@ -16,17 +16,29 @@ def db_var():
         raise
     return con
 
-def create_table():
+def create_table_users():
     con = db_var()
-    con.execute('''
+    try:
+        con.execute('''
         CREATE TABLE users (
             id INTEGER PRIMARY KEY,
             email VARCHAR(255) NOT NULL,
             username VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL)
+            password VARCHAR(255) NOT NULL),
+            "Book title" VARCHAR(255) NOT NULL ,
+            "Book author VARCHAR(255) NOT NULL"  ,
+            Genre TEXT NOT NULL,
+            "Library name" VARCHAR(255) NOT NULL,
+            Date of access" DATE NOT NULL ,
+            "Number of hours spent on reading" INT NOT NULL ,
+            Number of pages BIT NOT NULL,
             ''')
-    con.commit()
-    con.close()
+        con.commit()
+        con.close()
+    except Error as e:
+        print(e)
+    else:
+        pass
 
 def init_insert():
   con = db_var()
@@ -42,7 +54,7 @@ def init_insert():
   print(cur.fetchall())
   con.commit() and con.close()
 
-def init_create_table_library():
+def init_create_table_library_Bloated():
   con = db_var()
   con.execute('''
     CREATE TABLE library(
