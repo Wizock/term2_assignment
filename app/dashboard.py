@@ -7,16 +7,8 @@ dashboard = Blueprint('views', __name__)
 @dashboard.route("/")
 @dashboard.route('/home')
 def home():
-    return render_template('index.html')
+    return render_template('auth/index.html')
 
-@dashboard.route('/home')
-def home():
-    return render_template('index.html')
-
-@dashboard.route('/home')
-def home():
-    return render_template('index.html')
-
-@dashboard.route('/home')
-def home():
-    return render_template('index.html')
+@dashboard.route('/about')
+def about():
+    return render_template('dashboard/about.html')

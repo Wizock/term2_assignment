@@ -20,7 +20,7 @@ def login():
             else:
                 flash("There was a error while logging in, please try again.")
     else:
-        return render_template('login.html')
+        return render_template('auth/login.html')
 
 @auth.route('/reg', methods=("GET", "POST"))
 def reg():
@@ -35,4 +35,4 @@ def reg():
                 register_user(email, username, password, password2)
                 return redirect('/login')
     else:
-        return render_template('register.html', title="login")
+        return render_template('auth/register.html', title="login")
