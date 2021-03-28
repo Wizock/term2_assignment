@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from .__init__ import *
 
 dashboard = Blueprint('views', __name__)
 
@@ -10,5 +11,6 @@ def home():
     return render_template('auth/index.html')
 
 @dashboard.route('/about')
+@login_required
 def about():
     return render_template('dashboard/about.html')

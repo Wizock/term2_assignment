@@ -10,7 +10,7 @@ def register_user(email, username, password, password2):
   except sqlite3.OperationalError as e:
       print(e)
 
-def login_user(email, password):
+def authenticate(email, password):
   try:
     db = db_var()
     login_flag = db.execute("SELECT email, password FROM users WHERE email = ? AND password = ?",(email, password))

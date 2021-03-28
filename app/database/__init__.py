@@ -105,3 +105,5 @@ def init_create_table_library_Bloated():
     "Date Last Updated" TEXT
   )''')
   con.commit() and con.close()
+
+  

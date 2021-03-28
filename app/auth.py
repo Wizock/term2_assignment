@@ -1,9 +1,16 @@
-from app.database.db_handles import db_var, login_user, register_user
+from app.database import db_handles
+from app.database.db_handles import db_var, authenticate, register_user
 from flask import Flask, render_template, request, redirect, Blueprint
 from flask.helpers import flash
 from .database import *
+from flask_login import LoginManager
 
 auth = Blueprint('auth', __name__)
+login_manager = LoginManager()
+
+@login_manager.user_loader
+def load_user(user_id):
+    check_email = db_handles.execute("SELECT id FROM users WHERE email= ?", (email))
 
 @auth.route('/login', methods=("GET", "POST"))
 def login():
@@ -15,7 +22,10 @@ def login():
         check_email = db.execute("SELECT * FROM users WHERE email= ?",(email))
         check_password = db.execute("SELECT * FROM users WHERE password = ?",(password))
         if email == check_email and password == check_password:
-            if login_user(email, password) == True:
+            
+            if authenticate(email, password) == True:
+                login_user(email, remember=True)
+                                
                 flash("you were successfully logged in")
             else:
                 flash("There was a error while logging in, please try again.")
