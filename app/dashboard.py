@@ -1,16 +1,23 @@
 from flask import Blueprint, render_template
+from flask.globals import session
 from .__init__ import *
 
 dashboard = Blueprint('views', __name__)
 
 #used to do CRUD for user to enter thier premiers reading challange books. 
 
-@dashboard.route("/")
-@dashboard.route('/home')
-def home():
-    return render_template('auth/index.html')
-
 @dashboard.route('/about')
-@login_required
 def about():
+    return render_template('dashboard/about.html')
+
+@dashboard.route('/dashboard')
+def main():
+    return render_template('dashboard/main.html')
+
+# @dashboard.route('/entry')
+# def entry():
+#     return render_template('dashboard/about.html')
+
+@dashboard.route('/list')
+def list():
     return render_template('dashboard/about.html')
