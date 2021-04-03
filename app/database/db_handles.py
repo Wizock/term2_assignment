@@ -21,3 +21,4 @@ def authenticate(email, password):
   except sqlite3.OperationalError as e:
       print(e)
       
+      
