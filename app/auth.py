@@ -24,8 +24,7 @@ def login():
                 session['username'] = f"{email}"
                 session['logged_in'] = 'True'
                 flash("you were successfully logged in")
-                return session['username']
-                print('didnt reach')
+                return redirect('/dashboard')
             else:
                 session['logged_in'] = 'False'
                 flash("There was a error while logging in, please try again.")

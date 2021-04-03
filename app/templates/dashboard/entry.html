@@ -4,17 +4,22 @@
 <head>
 	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>CUE template : Queensland Government</title>
-	<link rel="stylesheet" type="text/css" href="static/cue/css/qg.css" media="all">
-	<link href="static/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
-	<link href="static/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
-	<link href="static/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
-	<link rel="shortcut icon" href="static/cue/images/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="static/theme/agency.css" media="all">
-</head>
-<!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="/static/cue/css/qg.css" media="all">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!--[if lt IE 8]><link rel="stylesheet" href="cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+	<link href="/static/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
+	<link href="/static/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
+	<link href="/static/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="/static/cue/images/favicon.ico">
+	<!--[if lt IE 9]>
     	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
     	<script type="text/javascript" src="cue/js/ie-layout.js"></script>
     <![endif]-->
+	<link rel="stylesheet" type="text/css" href="/static/theme/agency.css" media="all">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
 
 <body id="qld-gov-au">
 	<!--[if lt IE 9]><script type="text/javascript">jQuery && jQuery.transformer({addClasses:true})</script><![endif]-->
@@ -43,7 +48,7 @@
 					<img src="/static/cue/images/qg-coa-print.png" class="print-version" alt="">
 				</a>
 				<ul id="tools">
-					<li><a accesskey="3" href="http://www.qld.gov.au/#sitemap">About</a>
+					<li><a accesskey="3" href="http://www.qld.gov.au/#sitemap">Site map</a>
 					</li>
 					<li><a accesskey="4" href="http://www.qld.gov.au/contact/">Contact us</a>
 					</li>
@@ -67,7 +72,7 @@
             <!--[if gte IE 7]><!--><img src="/static/theme/site-name.png" height="28" alt="Site name"><!--<![endif]-->
             <!--[if lte IE 6]><img src="theme/site-name-ie6.png" height="28" alt="Site name"><![endif]-->
             <img src="/static/theme/site-name-print.png" height="28" class="print-version" alt="">
-        </a></h2> 
+        </a></h2>
 			</div>
 		</div>
 	</div>
@@ -75,24 +80,46 @@
 		<div class="max-width">
 			<h2>Site navigation</h2>
 			<ul>
-				<li><a href="/dashboard">Home</a></li>
-
-				<li><a href="/entry">Entry System</a></li>
-
-				<li><a href="/library">Library App</a></li>
-				
-			</ul>
+				<li><a href="/dashboard">Dashboard</a>
+				</li>
+				<li><a href="/about">About</a>
+				</li>
+				<li><a href="#">Library App</a>
+				</li>
+				<li><a href="/Entry">Entry System</a>
+				</li>
 		</div>
 	</div>
 	<div id="page-container">
 		<div class="max-width">
+			<div id="nav-section">
+				<div class="box-sizing">
+					<h2>Features</h2>
+					<ul>
+						<li>	<a href="/dashboard">
+								Dashboard
+							</a>
+						</li>
+						<li>	<a href="/about">
+								About
+							</a>
+						</li>
+						<li>	<a href="#">
+								Library App
+							</a>
+						</li>
+						<li>	<a href="/Entry">
+								Entry System
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 			<div id="content-container">
 				<div id="breadcrumbs">
 					<h2>You are here:</h2>
 					<ol>
-						<li><a href="/dashboard">Home</a>
-						</li>
-						<li><a href="/about">About</a>
+						<li><a href="/dashboard">Dashboard</a>
 						</li>
 					</ol>
 				</div>
@@ -102,7 +129,7 @@
 							<h1>Read-Em-All</h1>
 							<div class="page-options" id="pre-page-options">
 								<ul>
-									<li><a href="http://www.qld.gov.au/share/">Share</a> 
+									<li><a href="http://www.qld.gov.au/share/">Share</a>
 									</li>
 									<li><a href="http://www.qld.gov.au/help/feeds/">Subscribe</a>
 										<ul>
@@ -117,16 +144,69 @@
 								</ul>
 							</div>
 							<div class="section" id="section-introduction">
-								<p>Welcome to Read-Em-All!</p>
-								describe what this app is without telling users how to use it
+								<h2>Entry System</h2>
+								<p></p>
+								<form class='form-group' method="post" styles='margin-bottom: 25px;'>
+									
+									<h5>Title</h5>
+									{{ form.title       (class_='form-control',placeholder="Enter the Book's title ") }}
+									<h5>Book Author</h5>
+									{{ form.Bookauthor  (class_='form-control',placeholder="Enter the Books Authors name") }}
+									<h5>Book Genre</h5>
+									{{ form.Genre       (class_='form-control',placeholder="Enter the Books Genre") }}
+									<h5>Library</h5>
+									{{ form.Library     (class_='form-control',placeholder="Enter the Library of the book") }}
+									<h5>Date of completion</h5>
+									{{ form.Date_of_ac  (class_='form-control',placeholder="Enter the completion date") }}
+									<h5>Number of Hours spent reading</h5>
+									{{ form.n_hrs       (class_='form-control',placeholder="Enter the Books title") }}
+									<h5>n_pages</h5>
+									{{ form.n_pages     (class_='form-control',placeholder="Enter the Books title") }}
+
+									{{ form.submit      (class_='form-control',placeholder="Enter the Books title") }}
+								</form>
+							</div>
+							<div class="section" id="section-documentation">
+								<h2>Documentation</h2>
+								<p>The following template documentation is also available:</p>
+								<ul>
+									<li><a href="../../docs/cue-template-change-log.doc" class="download"><span class="title">Template change log</span><span class="meta"> (DOC, 72 KB)</span></a>
+									</li>
+									<li><a href="../../docs/cue-template-conformance-requirements.doc" class="download"><span class="title">Template conformance requirements</span><span class="meta"> (DOC, 95 KB)</span></a>
+									</li>
+									<li>Implementation advice:
+										<ul>
+											<li><a href="../../docs/cue-how-to-customise-the-template.doc" class="download"><span class="title">How to customise the template</span><span class="meta"> (DOC, 90 KB)</span></a>
+											</li>
+											<li><a href="../../docs/cue-template-reset-styles.doc" class="download"><span class="title">CUE template reset styles</span><span class="meta"> (DOC, 49 KB)</span></a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div class="section" id="section-more-info">
+								<h2>More information</h2>
+								<p>More information is available on the <a href="http://ssq.govnet.qld.gov.au/web/">Queensland Government WebCentre</a>
+									or by contacting the Smart Service Queensland <a href="onlineservices@smartservice.qld.gov.au">Online Services Unit</a>.</p>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="aside">
+					<div class="box-sizing">
+						<h2>latest book read:</h2>
+						<p>latest book read: {{ latest_book }}</p>
+						<p>when read: {{ when_read }}</p>
+						<h2>summary:</h2>
+						<p>amount of books read: {{ number_of_books}}</p>
+					</div>
+				</div>
+				
 				<div id="document-properties">
 					<div class="box-sizing">
-						<dl> <dt>Last updated</dt>
-							<dd>03 April 2021</dd>
+						<dl>	<dt>Last reviewed</dt>
+							<dd>28 June 2010</dd>	<dt>Last updated</dt>
+							<dd>29 June 2010</dd>
 						</dl>
 					</div>
 				</div>
@@ -171,7 +251,7 @@
 				<div class="box-sizing">
 					<h2>Explore this site</h2>
 					<div class="section">
-						<h3><a href="/about/">Information about</a></h3>
+						<h3><a href="/about/">Information about</a></h3> 
 						<ul>
 							<li><a href="/about/driving-and-transport/">Driving and public transport</a>
 							</li>
@@ -192,7 +272,7 @@
 						</ul>
 					</div>
 					<div class="section">
-						<h3><a href="/government/">Government</a></h3>
+						<h3><a href="/government/">Government</a></h3> 
 						<ul>
 							<li><a href="/government/levels-of-government.html">Levels of government</a>
 							</li>
@@ -219,7 +299,7 @@
 						</ul>
 					</div>
 					<div class="section">
-						<h3><a href="/about-queensland/">About Queensland</a></h3>
+						<h3><a href="/about-queensland/">About Queensland</a></h3> 
 						<ul>
 							<li><a href="/about-queensland/moving.html">Moving to Queensland</a>
 							</li>
@@ -230,7 +310,7 @@
 						</ul>
 					</div>
 					<div class="section">
-						<h3><a href="/announcements/">Announcements</a></h3>
+						<h3><a href="/announcements/">Announcements</a></h3> 
 						<ul>
 							<li><a href="/announcements/?region=darlingDownsWestMoreton">Darling Downs / West Moreton</a>
 							</li>
@@ -255,10 +335,10 @@
 						</ul>
 					</div>
 					<div class="section">
-						<h3><a href="/comment/">Comment on</a></h3>
-						<h3><a href="/my-community/">My community</a></h3>
-						<h3><a href="/services/">Services online</a></h3>
-						<h3><a href="/grants/">Grants</a></h3>
+						<h3><a href="/comment/">Comment on</a></h3> 
+						<h3><a href="/my-community/">My community</a></h3> 
+						<h3><a href="/services/">Services online</a></h3> 
+						<h3><a href="/grants/">Grants</a></h3> 
 						<h3 class="feed-link"><a href="/help/feeds/">XML feeds</a></h3> 
 					</div>
 				</div>
@@ -294,8 +374,10 @@
 			</div>
 		</div>
 	</div>
+	<!--[if gte IE 9]><!-->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-	<script type="text/javascript" src="static/cue/js/qg.js"></script>
+	<!--<![endif]-->
+	<script type="text/javascript" src="/static/cue/js/qg.js"></script>
 </body>
 
 </html>
