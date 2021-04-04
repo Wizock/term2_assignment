@@ -4,34 +4,42 @@ from app.database.db_handles import db_var, authenticate, register_user
 from flask import Flask, render_template, request, redirect, Blueprint
 from flask.helpers import flash
 from .database import *
+from .user import User
+from .__init__ import return_login_var
+
+from flask_login import login_user, login_required, logout_user, login_manager
+return_login_var.login_view = '/login'
 
 auth = Blueprint('auth', __name__)
 
+# @login_manager.user_loader
+# @auth.route('/deb-user', methods=("GET", "POST"))
+# def load_user(id):
+#     db = db_var()
+#     c = db.execute("SELECT username from users where username = (?)", [id])
+#     userrow = c.fetchone()
+#     userid = userrow[0] 
+#     return userid
+
+
 @auth.route('/login', methods=("GET", "POST"))
 def login():
-    if session['logged_in'] == 'False':
-        if request.method == "POST":
-            email = request.form['email']
-            password = request.form['password']
-            print(f"email:{email} password:{password}")
-            db = db_var()
-            check_email = db.execute("SELECT * FROM users WHERE email= ?",(email,))
-            check_password = db.execute("SELECT * FROM users WHERE password = ?",(password,))
-            print(f"check_email:{check_email} check_password:{check_password}")
-            print('database shit is happened')
+    
+    if request.method == "POST":
+        email = request.form['email']
+        password = request.form['password']
+        user = User(email=email,password=password)
 
-            if authenticate(email, password) == True:
-                session['username'] = f"{email}"
-                session['logged_in'] = 'True'
-                flash("you were successfully logged in")
-                return redirect('/dashboard')
-            else:
-                session['logged_in'] = 'False'
-                flash("There was a error while logging in, please try again.")
+        if authenticate(email, password) == True:
+            login_user(user)
+
+            return redirect('/dashboard')
         else:
-            return render_template('auth/login.html')
+            session['logged_in'] = 'False'
+            flash("There was a error while logging in, please try again.")
     else:
-        return redirect('/about')
+        return render_template('auth/login.html')
+
 
 @auth.route('/reg', methods=("GET", "POST"))
 def reg():
@@ -49,19 +57,16 @@ def reg():
         return render_template('auth/register.html', title="login")
 
 @auth.route('/logout', methods=("GET", "POST"))
+@login_required 
 def logout():
-    if session['logged_in'] == "True":
-        session['logged_in'] = 'False'
-        return redirect('/')
-    elif session['logged_in'] == "False":
-        return redirect('/list')
+    logout_user()
+    return redirect('/')
 
 @auth.route("/")
 @auth.route('/index')
 def index():
-    if session['logged_in'] == "True":
-        return redirect('/about')
     return render_template('auth/index.html')
+
 
 @auth.route('/deb')
 def debug():

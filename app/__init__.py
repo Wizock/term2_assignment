@@ -1,6 +1,7 @@
 from flask import Flask, app
 from flask.helpers import url_for
 from .auth import *
+from flask_login import LoginManager
 
 def create_app():
     app = Flask(__name__)
@@ -11,7 +12,11 @@ def create_app():
     app.register_blueprint(dashboard, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(libraryviews, url_prefix='/')
-    
-    
+
     return app
 
+
+def return_login_var():
+    app = create_app()
+    login_manager = LoginManager()
+    login_manager.init_app(app)
