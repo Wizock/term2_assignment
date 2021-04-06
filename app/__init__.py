@@ -15,8 +15,3 @@ def create_app():
 
     return app
 
-
-def return_login_var():
-    app = create_app()
-    login_manager = LoginManager()
-    login_manager.init_app(app)

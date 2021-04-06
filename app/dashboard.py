@@ -1,26 +1,30 @@
+import sqlite3
+
+from werkzeug.utils import redirect
+from app.database import db_var
 from sqlite3.dbapi2 import Cursor
 from flask import Blueprint, render_template
-from flask.globals import session
+from flask.globals import request, session
 from .entry_form import EntryForm
-from .__init__ import *
+
 
 dashboard = Blueprint('views', __name__)
 
 #used to do CRUD for user to enter thier premiers reading challange books. 
-from flask_login import login_user, login_required, logout_user
-return_login_var.login_view = '/login'
 
-@login_required 
+
+
 @dashboard.route('/about')
 def about():
-    return render_template('dashboard/about.html')
+    return render_template('dashboard/about.html',Dashboard_Url='/dashboard/'+session['username'])
 
-@login_required 
-@dashboard.route('/dashboard')
-def main():
-    return render_template('dashboard/main.html')
 
-@login_required 
+@dashboard.route('/dashboard/<user>')
+def main(user):
+
+    return render_template('dashboard/main.html',Dashboard_Url='/dashboard/'+session['username'])
+
+
 @dashboard.route('/Entry', methods=("GET", "POST"))
 def entry():
 
@@ -34,24 +38,26 @@ def entry():
         Date_of_ac = request.form['Date_of_ac']
         n_hrs      = request.form['n_hrs']
         n_pages    = request.form['n_pages']
-
+        
         db = db_var()
+        dbc = db.cursor()
         try:
-            db.execute('''
-        INSERT INTO users (Booktitle,Bookauthor,Library,Genre,Dateofaccess,Numberofhours,Numberofpages) VALUES(?,?,?,?,?,?,?)
-        ''',(title, Bookauthor, Genre, Library, Date_of_ac, n_hrs, n_pages)
+            dbc.execute('''
+        INSERT INTO Entries (Booktitle,Bookauthor,Libraryname,Genre,Dateofaccess,Numberofhours,Numberofpages,CreatorID) VALUES(?,?,?,?,?,?,?,?)
+        ''',(title, Bookauthor, Genre, Library, Date_of_ac, n_hrs, n_pages,session['userid'])
         )
         except sqlite3.OperationalError as e:
-            return e
+            return str(e)
         else:
-            return redirect('/dashboard')
+            db.commit()
+            db.close()
+            return redirect('/dashboard/'+session['username'])
 
     else:
         form = EntryForm()
-        return render_template('dashboard/entry.html', form=form)
+        return render_template('dashboard/entry.html', form=form, Dashboard_Url='/dashboard/'+session['username'])
 
 
-@login_required 
 @dashboard.route('/list')
 def list():
     return render_template('dashboard/about.html')

@@ -21,4 +21,16 @@ def authenticate(email, password):
   except sqlite3.OperationalError as e:
       print(e)
       
-      
+def return_user(email,password):
+  db = db_var()
+  curs = db.cursor()
+  curs.execute(''' SELECT username FROM users WHERE email = ? AND password = ? ''',(email, password))
+  g = curs.fetchone()
+  return g[0]
+
+def return_id(email,password):
+  db = db_var()
+  curs = db.cursor()
+  curs.execute(''' SELECT id FROM users WHERE email = ? AND password = ? ''',(email, password))
+  g = curs.fetchone()
+  return g[0]
