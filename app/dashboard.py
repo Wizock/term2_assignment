@@ -1,3 +1,4 @@
+from app.database.db_handles import latest_book, number_of_books, when_read
 import sqlite3
 
 from werkzeug.utils import redirect
@@ -6,7 +7,7 @@ from sqlite3.dbapi2 import Cursor
 from flask import Blueprint, render_template
 from flask.globals import request, session
 from .entry_form import EntryForm
-
+import datetime
 
 dashboard = Blueprint('views', __name__)
 
@@ -22,7 +23,19 @@ def about():
 @dashboard.route('/dashboard/<user>')
 def main(user):
 
-    return render_template('dashboard/main.html',Dashboard_Url='/dashboard/'+session['username'])
+    return render_template(
+        'dashboard/main.html',
+
+        latest_book = latest_book(),
+
+        when_read = when_read(),
+
+        number_of_books = number_of_books(),
+
+        Dashboard_Url = '/dashboard/'+session['username'],
+
+        username = session['username']
+     )
 
 
 @dashboard.route('/Entry', methods=("GET", "POST"))
@@ -55,7 +68,9 @@ def entry():
 
     else:
         form = EntryForm()
-        return render_template('dashboard/entry.html', form=form, Dashboard_Url='/dashboard/'+session['username'])
+        current_datevar = datetime.datetime.now()
+        current_date = f"today's date is : {current_datevar.day}/{current_datevar.month}/{current_datevar.year}"
+        return render_template('dashboard/entry.html', form=form, current_date=current_date , Dashboard_Url='/dashboard/'+session['username'])
 
 
 @dashboard.route('/list')

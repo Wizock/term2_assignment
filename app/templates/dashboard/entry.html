@@ -119,6 +119,8 @@
 				<div id="breadcrumbs">
 					<h2>You are here:</h2>
 					<ol>
+						<li><a href="{{ Dashboard_Url }}">Dashboard</a>
+						</li>
 						<li><a href="/Entry">Entry</a>
 						</li>
 					</ol>
@@ -157,7 +159,7 @@
 									<h5>Library</h5>
 									{{ form.Library     (class_='form-control',placeholder="Enter the Library of the book") }}
 									<h5>Date of completion</h5>
-									{{ form.Date_of_ac  (class_='form-control',placeholder="Enter the completion date") }}
+									{{ form.Date_of_ac  (class_='form-control',placeholder= current_date ) }}
 									<h5>Number of Hours spent reading</h5>
 									{{ form.n_hrs       (class_='form-control',placeholder="Enter the Number of Hours spent reading") }}
 									<h5>Number pages</h5>

@@ -1,8 +1,10 @@
+import datetime
 from flask.globals import session
 from app.database import db_handles
 from app.database.db_handles import db_var, authenticate, register_user, return_id, return_user
 from flask import Flask, render_template, request, redirect, Blueprint
 from flask.helpers import flash
+
 from .database import *
 
 auth = Blueprint('auth', __name__)
@@ -49,4 +51,5 @@ def index():
 
 @auth.route('/deb')
 def debug():
-    return f"{session['username']} and {session['logged_in']}"
+    x = datetime.datetime.now()
+    return str(x)
