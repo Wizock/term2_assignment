@@ -1,4 +1,4 @@
-from app.database.db_handles import latest_book, number_of_books, when_read
+from app.database.db_handles import stat_returns
 import sqlite3
 
 from werkzeug.utils import redirect
@@ -22,15 +22,15 @@ def about():
 
 @dashboard.route('/dashboard/<user>')
 def main(user):
-
+    return_inst = stat_returns()
     return render_template(
         'dashboard/main.html',
 
-        latest_book = latest_book(),
+        latest_book = return_inst.latest_book(),
 
-        when_read = when_read(),
+        when_read = return_inst.when_read(),
 
-        number_of_books = number_of_books(),
+        number_of_books = return_inst.number_of_books(),
 
         Dashboard_Url = '/dashboard/'+session['username'],
 

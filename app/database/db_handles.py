@@ -38,29 +38,26 @@ def return_id(email,password):
   g = curs.fetchone()
   return g[0]
 
-      
 
+class stat_returns:
+  def __init__(self):
+      self.db = db_var()
+      self.curs = self.db.cursor()
 
-def latest_book():
-  
-  db = db_var()
-  curs = db.cursor()
-  curs.execute(''' SELECT Booktitle FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries)  ''',(str(session['userid'])))
-  g = curs.fetchone()
-  return g[::1]
+  def latest_book(self):    
+    self.curs.execute(''' SELECT Booktitle FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries)  ''',(str(session['userid'])))
+    g = self.curs.fetchall()
+    ret = len(g) - 1; returning_value = str(g[ret]).strip("('',) '") 
+    return returning_value
 
-def when_read():
-  id = session['userid']
-  db = db_var()
-  curs = db.cursor()
-  curs.execute(''' SELECT Dateofaccess FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries) ''',(str(session['userid'])))
-  g = curs.fetchone()
-  return g[0]
+  def when_read(self):
+    self.curs.execute(''' SELECT Dateofaccess FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries) ''',(str(session['userid'])))
+    g = self.curs.fetchall()
+    ret = len(g) - 1; returning_value = str(g[ret]).strip("('',) '") 
+    return returning_value
 
-def number_of_books():
-  id = session['userid']
-  db = db_var()
-  curs = db.cursor()
-  curs.execute(''' SELECT Numberofhours FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries)  ''',(str(session['userid'])))
-  g = curs.fetchone()
-  return g[::1]
+  def number_of_books(self):
+    self.curs.execute(''' SELECT Numberofhours FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries)  ''',(str(session['userid'])))
+    g = self.curs.fetchall()
+    ret = len(g) - 1; returning_value = str(g[ret]).strip("('',) '") 
+    return returning_value
