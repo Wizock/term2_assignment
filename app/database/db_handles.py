@@ -15,7 +15,8 @@ def register_user(email, username, password, password2):
 def authenticate(email, password):
   try:
     db = db_var()
-    login_flag = db.execute("SELECT email, password FROM users WHERE email = ? AND password = ?",(email, password))
+    curs = db.cursor()
+    login_flag = curs.execute("SELECT email, password FROM users WHERE email = ? AND password = ?",(email, password))
     if login_flag == False or None:
       return False
     else:
@@ -29,14 +30,22 @@ def return_user(email,password):
   curs = db.cursor()
   curs.execute(''' SELECT username FROM users WHERE email = ? AND password = ? ''',(email, password))
   g = curs.fetchone()
-  return g[0]
+  if g == None:
+    return "No user"
+  else:
+
+    return g[0]
 
 def return_id(email,password):
   db = db_var()
   curs = db.cursor()
   curs.execute(''' SELECT id FROM users WHERE email = ? AND password = ? ''',(email, password))
   g = curs.fetchone()
-  return g[0]
+  if g == None:
+    return "No user"
+  else:
+
+    return g[0]
 
 
 class stat_returns:

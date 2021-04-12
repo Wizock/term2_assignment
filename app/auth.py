@@ -16,14 +16,14 @@ def login():
         email = request.form['email']
         password = request.form['password']
         
-        if authenticate(email, password) == True:
-            session['username'] = return_user(email, password)
-            session['userid'] = return_id(email, password)
-            
-            return redirect('/dashboard/'+ session['username'])
-        else:
-            session['logged_in'] = 'False'
-            flash("There was a error while logging in, please try again.")
+        if authenticate(email, password) ==True :
+            if return_user(email, password) or return_id(email, password) != None or 0:
+                session['username'] = return_user(email, password)
+                session['userid'] = return_id(email, password)
+                return redirect('/dashboard')
+            else:
+                "<h1> you entered a wrong password or email. please click <a href='/l' > here </a> to try again </h1>"
+                flash("There was a error while logging in, please try again.")
     else:
         return render_template('auth/login.html')
 
@@ -48,6 +48,10 @@ def reg():
 def index():
     return render_template('auth/index.html')
 
+@auth.route('/logout')
+def logout():
+    session['userid'] == None
+    return redirect("/")
 
 @auth.route('/deb')
 def debug():

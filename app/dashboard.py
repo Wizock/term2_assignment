@@ -20,8 +20,8 @@ def about():
     return render_template('dashboard/about.html',Dashboard_Url='/dashboard/'+session['username'])
 
 
-@dashboard.route('/dashboard/<user>')
-def main(user):
+@dashboard.route('/dashboard')
+def main():
     return_inst = stat_returns()
     return render_template(
         'dashboard/main.html',
@@ -64,7 +64,7 @@ def entry():
         else:
             db.commit()
             db.close()
-            return redirect('/dashboard/'+session['username'])
+            return redirect('/dashboard')
 
     else:
         form = EntryForm()
