@@ -53,8 +53,26 @@ def returnDataFromEntries(element):
   curs.execute(f''' SELECT {element} FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries)  ''',((str(session['userid']))))
   g = curs.fetchall()
   if len(g) < 1 | 0:
-    ret = "You haven't read any books"
-    return ret
+ 
+    return "You haven't read any books"
   else:
-    ret = len(g) - 1; returning_value = str(g[ret]).strip("('',) '") 
-    return returning_value
+    return str(g[len(g) - 1]).strip("('',) '")
+
+def returnAllFromEntries(element):
+  db = db_var()
+  curs = db.cursor()
+  curs.execute(f''' SELECT {element} FROM Entries WHERE CreatorID = ? ''',((str(session['userid']))))
+  g = curs.fetchall()
+  if len(g) < 1 | 0:
+    return "You haven't read any books"
+  else:
+    retString = str(g).strip("('',) '")
+    return retString
+
+def nOfRecords():
+  db = db_var()
+  curs = db.cursor()
+  curs.execute(f'''SELECT COUNT(*)
+                  FROM Entries;''')
+  return curs.fetchone() 
+  

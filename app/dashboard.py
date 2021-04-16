@@ -1,4 +1,4 @@
-from app.database.db_handles import returnDataFromEntries
+from app.database.db_handles import nOfRecords, returnAllFromEntries, returnDataFromEntries
 import sqlite3
 
 from werkzeug.utils import redirect
@@ -75,10 +75,27 @@ def entry():
 
 @dashboard.route('/list')
 def list():
+    Entryid = nOfRecords()
+    bookTitle = returnAllFromEntries('bookTitle')
+    bookAuthor = returnAllFromEntries('bookAuthor')
+    genre = returnAllFromEntries('Genre')
+    libraryName = returnAllFromEntries('Libraryname')
+    dateOfAcess = returnAllFromEntries('Dateofaccess')
+    Numberofhours = returnAllFromEntries('Numberofhours')
+    Numberofpages = returnAllFromEntries('Numberofpages')
 
-    return render_template('dashboard/list.html')
+    return render_template('dashboard/list.html',Entryid = Entryid[0] ,date = dateOfAcess,booktitle = bookTitle)
 
 
-# @dashboard.route('/about')
-# def about():
-#     return render_template('dashboard/about.html')
+@dashboard.route('/debug')
+def debugger():
+    Entryid = nOfRecords()
+    bookTitle = returnAllFromEntries('bookTitle')
+    bookAuthor = returnAllFromEntries('bookAuthor')
+    genre = returnAllFromEntries('Genre')
+    libraryName = returnAllFromEntries('Libraryname')
+    dateOfAcess = returnAllFromEntries('Dateofaccess')
+    Numberofhours = returnAllFromEntries('Numberofhours')
+    Numberofpages = returnAllFromEntries('Numberofpages')
+
+    return 

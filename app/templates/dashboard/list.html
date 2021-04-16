@@ -87,14 +87,18 @@
 					<div class="article">
 						<div class="box-sizing">
 							<h1>List of books read</h1>
-							<ul class="search-results">
-								<li>
-									<h3><a><span class="result-title">Queensland Core Skills (QCS) <strong>Test</strong></span></a></h3>
-									<p class="search-description">Dates, special provision information, publications and administration resources for the annual Queensland Core Skills <strong>Test</strong>, which is based on the common curriculum elements of the Queensland senior syllabuses.</p>
-									<p class="meta">http://www.qsa.qld.edu.au/assessment/587.html - 24 KB - 25 Oct 2007</p>
-								</li>
-							
-							</ul>
+							{% for Data in range(0, Entryid) %}
+								<ul class="search-results">
+									<li>
+										<h3><a><span class="result-title">{{ booktitle }}</span></a></h3>
+										<p class="search-description"> 
+											
+										</p>
+										<p class="meta">finished on day:{{date}}</p>
+									</li>
+								
+								</ul>
+							{% endfor %}
 														
 						</div>
 					</div>
