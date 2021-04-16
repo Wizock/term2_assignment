@@ -1,4 +1,4 @@
-from app.database.db_handles import stat_returns
+from app.database.db_handles import returnDataFromEntries
 import sqlite3
 
 from werkzeug.utils import redirect
@@ -22,15 +22,15 @@ def about():
 
 @dashboard.route('/dashboard')
 def main():
-    return_inst = stat_returns()
+
     return render_template(
         'dashboard/main.html',
 
-        latest_book = return_inst.latest_book(),
+        latest_book = returnDataFromEntries('Booktitle'),
 
-        when_read = return_inst.when_read(),
+        when_read = returnDataFromEntries('Dateofaccess'),
 
-        number_of_books = return_inst.number_of_books(),
+        number_of_books = returnDataFromEntries('Numberofhours'),
 
         Dashboard_Url = '/dashboard/'+session['username'],
 
@@ -75,4 +75,10 @@ def entry():
 
 @dashboard.route('/list')
 def list():
-    return render_template('dashboard/about.html')
+
+    return render_template('dashboard/list.html')
+
+
+# @dashboard.route('/about')
+# def about():
+#     return render_template('dashboard/about.html')
