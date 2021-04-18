@@ -85,17 +85,3 @@ def list():
     Numberofpages = returnAllFromEntries('Numberofpages')
 
     return render_template('dashboard/list.html',Entryid = Entryid[0] ,date = dateOfAcess,booktitle = bookTitle)
-
-
-@dashboard.route('/debug')
-def debugger():
-    Entryid = nOfRecords()
-    bookTitle = returnAllFromEntries('bookTitle')
-    bookAuthor = returnAllFromEntries('bookAuthor')
-    genre = returnAllFromEntries('Genre')
-    libraryName = returnAllFromEntries('Libraryname')
-    dateOfAcess = returnAllFromEntries('Dateofaccess')
-    Numberofhours = returnAllFromEntries('Numberofhours')
-    Numberofpages = returnAllFromEntries('Numberofpages')
-
-    return 
