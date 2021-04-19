@@ -77,11 +77,13 @@ def entry():
 def list():
     Entryid = nOfRecords()
     bookTitle = returnAllFromEntries('bookTitle')
+
     bookAuthor = returnAllFromEntries('bookAuthor')
     genre = returnAllFromEntries('Genre')
     libraryName = returnAllFromEntries('Libraryname')
     dateOfAcess = returnAllFromEntries('Dateofaccess')
     Numberofhours = returnAllFromEntries('Numberofhours')
     Numberofpages = returnAllFromEntries('Numberofpages')
-
-    return render_template('dashboard/list.html',Entryid = Entryid[0] ,date = dateOfAcess,booktitle = bookTitle)
+    for g in range(0,Entryid):
+        
+        return render_template('dashboard/list.html',Entryid = Entryid[0] ,date = dateOfAcess[0][0], booktitle = bookTitle[0][0])

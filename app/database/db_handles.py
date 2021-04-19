@@ -66,13 +66,15 @@ def returnAllFromEntries(element):
   if len(g) < 1 | 0:
     return "You haven't read any books"
   else:
-    retString = str(g).strip("('',) '")
+    retString = g
+    print(retString)
     return retString
 
 def nOfRecords():
   db = db_var()
   curs = db.cursor()
+  user = str(session['userid'])
   curs.execute(f'''SELECT COUNT(*)
-                  FROM Entries;''')
+                  FROM Entries WHERE CreatorID = ? ;''',(user))
   return curs.fetchone() 
   
