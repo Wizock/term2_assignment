@@ -9,6 +9,7 @@ DBLOCATION = os.path.join(BASE_DIR, 'database.db')
 def db_var():
     try:
         con = sqlite3.connect(DBLOCATION)
+        
     except sqlite3.OperationalError as e:
       if e.args[0].startswith('no such table'):
         exists = False

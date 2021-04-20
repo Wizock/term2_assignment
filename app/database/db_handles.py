@@ -50,10 +50,12 @@ def return_id(email,password):
 def returnDataFromEntries(element):
   db = db_var()
   curs = db.cursor()
+  curs.row_factory = lambda cursor, row: row[0]
   curs.execute(f''' SELECT {element} FROM Entries WHERE CreatorID = (SELECT MAX (?) FROM Entries)  ''',((str(session['userid']))))
   g = curs.fetchall()
+  
   if len(g) < 1 | 0:
- 
+  
     return "You haven't read any books"
   else:
     return str(g[len(g) - 1]).strip("('',) '")
@@ -61,18 +63,18 @@ def returnDataFromEntries(element):
 def returnAllFromEntries(element):
   db = db_var()
   curs = db.cursor()
-  curs.execute(f''' SELECT {element} FROM Entries WHERE CreatorID = ? ''',((str(session['userid']))))
-  g = curs.fetchall()
-  if len(g) < 1 | 0:
-    return "You haven't read any books"
-  else:
-    retString = g
-    print(retString)
-    return retString
+  curs.row_factory = lambda cursor, row: row[0]
+  return_list = []
+  for var in curs.execute(f''' SELECT {element} FROM Entries WHERE CreatorID = ? ''',((str(session['userid'])))):
+      return_list.append(var)
+  return return_list
+
 
 def nOfRecords():
+  
   db = db_var()
   curs = db.cursor()
+  curs.row_factory = lambda cursor, row: row[0]
   user = str(session['userid'])
   curs.execute(f'''SELECT COUNT(*)
                   FROM Entries WHERE CreatorID = ? ;''',(user))

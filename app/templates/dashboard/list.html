@@ -5,7 +5,7 @@
 	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>CUE template : Queensland Government</title>
 	<link rel="stylesheet" type="text/css" href="/static/cue/css/qg.css" media="all">
-	<!--[if lt IE 8]><link rel="stylesheet" href="cue/css/qg-ie.css" type="text/css" media="all"><![endif]-->
+
 	<link href="/static/cue/css/layout-small.css" media="all" rel="stylesheet" type="text/css">
 	<link href="/static/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
 	<link href="/static/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
@@ -14,8 +14,7 @@
 </head>
 
 <body id="qld-gov-au">
-	<!--[if lt IE 9]><script type="text/javascript">jQuery && jQuery.transformer({addClasses:true})</script><![endif]-->
-	<div id="access">
+		<div id="access">
 		<h2>Skip links and keyboard navigation</h2>
 		<ul>
 			<li><a href="#content">Skip to content</a></li>
@@ -30,8 +29,7 @@
 				<h2>Site header</h2>
 				<a id="qg-coa" href="http://www.qld.gov.au/">
 					<!--[if gte IE 7]><!--><img src="/static/theme/qg-coa.png" width="287" height="50" alt="Queensland Government">
-					<!--<![endif]-->
-					<!--[if lte IE 6]><img src="theme/qg-coa-ie6.png" width="287" height="50" alt="Queensland Government"><![endif]--><img src="/static/cue/images/qg-coa-print.png" class="print-version" alt=""> </a>
+					<img src="/static/cue/images/qg-coa-print.png" class="print-version" alt=""> </a>
 				<ul id="tools">
 					<li><a accesskey="3" href="http://www.qld.gov.au/#sitemap">Site map</a></li>
 					<li><a accesskey="4" href="http://www.qld.gov.au/contact/">Contact us</a></li>
@@ -60,7 +58,7 @@
 		<div class="max-width">
 			<h2>Site navigation</h2>
 			<ul>
-				<li><a href="{{ Dashboard_Url }}">Dashboard</a>
+				<li><a href="/dashboard">Dashboard</a>
 				</li>
 				<li><a href="/about">About</a>
 				</li>
@@ -86,20 +84,25 @@
 				<div id="content">
 					<div class="article">
 						<div class="box-sizing">
+
 							<h1>List of books read</h1>
 							{% for Data in range(0, Entryid) %}
-							
-								<ul class="search-results">
-									<li>
-										<h3><a><span class="result-title">{{ booktitle }}</span></a></h3>
-										<p class="search-description"> 
-											
-										</p>
-										<p class="meta">finished on day:{{date}}</p>
-									</li>
 								
-								</ul>
-							{% endfor %}
+									<ul class="search-results">
+										<li>
+											<h3><a><span class="result-title">{{ booktitle[Data] }}</span></a></h3>
+											<p class="search-description">
+											Author: {{bookAuthor[Data]}}<br>
+											Genre: {{genre[Data]}}<br>
+											Library Borrowed From: {{libraryName[Data]}}<br>
+											Hours Spent Reading: {{Numberofhours[Data]}}<br>
+											Number of pages in book: {{Numberofpages[Data]}}<br>
+											
+											</p>
+											<p class="meta">finished on day:{{date[Data] }}</p>
+										</li>
+									</ul>
+								{% endfor %}
 														
 						</div>
 					</div>

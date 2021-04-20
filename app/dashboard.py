@@ -84,6 +84,22 @@ def list():
     dateOfAcess = returnAllFromEntries('Dateofaccess')
     Numberofhours = returnAllFromEntries('Numberofhours')
     Numberofpages = returnAllFromEntries('Numberofpages')
-    for g in range(0,Entryid):
+
         
-        return render_template('dashboard/list.html',Entryid = Entryid[0] ,date = dateOfAcess[0][0], booktitle = bookTitle[0][0])
+    return render_template('dashboard/list.html',
+    Entryid = Entryid ,
+    date = dateOfAcess, 
+    booktitle = bookTitle, 
+    bookAuthor = bookAuthor,
+    genre = genre,
+    libraryName = libraryName,
+    Numberofhours = Numberofhours,
+    Numberofpages = Numberofpages,
+
+    )
+
+# @dashboard.route("/debug")
+# def debug():
+#     print(nOfRecords())
+
+#     return str(nOfRecords())
