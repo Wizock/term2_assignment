@@ -14,3 +14,7 @@ class EntryForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit      = SubmitField('Complete entry')
 
+class lib(FlaskForm):
+    
+    postcode = StringField('postcode')
+    submit = SubmitField('Complete entry')

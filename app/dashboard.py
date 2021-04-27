@@ -6,7 +6,7 @@ from app.database import db_var
 from sqlite3.dbapi2 import Cursor
 from flask import Blueprint, render_template
 from flask.globals import request, session
-from .entry_form import EntryForm
+from .entry_form import EntryForm, lib
 import datetime
 from app.database.db_handles import libquery, nOflibs
 from flask import Flask, render_template, request, redirect, Blueprint
@@ -103,10 +103,12 @@ def list():
 @dashboard.route('/library', methods=["GET", "POST"])
 def library():
     if request.method == "POST":
+        form = lib()
         postcodevar  = request.forms['postcode']
         Entryid = nOflibs(postcodevar)
         return render_template(
             "library/library.html",
+            form = form,
             dataisentered=True ,
             Entryid=Entryid ,
             postcode = postcodevar,
@@ -127,7 +129,8 @@ def library():
             Sunday             =  libquery(postcodevar,'Sunday'             ),
             )
     else:
-        return render_template("library/library.html",dataisentered=False)
+        form = lib()
+        return render_template("library/library.html",form=form,dataisentered=False)
 
 # @dashboard.route("/debug")
 # def debug():

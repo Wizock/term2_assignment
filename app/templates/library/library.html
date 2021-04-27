@@ -90,12 +90,10 @@
 						<div class="box-sizing">
 
 							<h1>List of books read</h1>
-							<form method="post">
-								<div class="form-group">
-									<label for="exampleInputEmail1">Enter Post Code</label>
-									<input type="text" class="form-control" name='postcode' id="postcode" aria-describedby="Enter Post Code" placeholder="Post Code">
-								</div>
-								<button type="submit" class="btn btn-primary">Submit</button>
+							<h5>Title</h5>
+							<form method='post'>
+								{{ form.postcode(class_='form-control',placeholder="Enter Your Post Code ") }}
+								{{ form.submit      (class_='form-control',placeholder="Search for nearest library") }}
 							</form>
 							{% if dataisentered %}
 								{% for Data in range(0, Entryid) %}
