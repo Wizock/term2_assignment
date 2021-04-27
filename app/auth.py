@@ -1,8 +1,7 @@
 import datetime
 from flask.globals import session
-from app.database import db_handles
-from app.database.db_handles import db_var, authenticate, register_user, return_id, return_user
-from flask import Flask, render_template, request, redirect, Blueprint
+from app.database.db_handles import authenticate, register_user, return_id, return_user
+from flask import render_template, request, redirect, Blueprint
 from flask.helpers import flash
 
 from .database import *

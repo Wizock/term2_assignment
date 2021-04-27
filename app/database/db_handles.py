@@ -79,4 +79,22 @@ def nOfRecords():
   curs.execute(f'''SELECT COUNT(*)
                   FROM Entries WHERE CreatorID = ? ;''',(user))
   return curs.fetchone() 
+
+def nOflibs(postcode):
   
+  db = db_var()
+  curs = db.cursor()
+  curs.row_factory = lambda cursor, row: row[0]
+  curs.execute(f'''SELECT COUNT(*)
+                  FROM library WHERE "Address Postcode" = {postcode};''')
+  return curs.fetchone() 
+
+def libquery(postcode, element):
+  db = db_var()
+  curs = db.cursor()
+  curs.row_factory = lambda cursor, row: row[0]
+  return_list = []
+  for var in curs.execute(f''' SELECT {element}  FROM library WHERE "Address Postcode" = {postcode}'''):
+      return_list.append(var)
+  return return_list
+
