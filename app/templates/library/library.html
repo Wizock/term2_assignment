@@ -92,17 +92,17 @@
 							<h1>List of books read</h1>
 							<h5>Title</h5>
 							<form method='post'>
-								{{ form.postcode(class_='form-control',placeholder="Enter Your Post Code ") }}
-								{{ form.submit      (class_='form-control',placeholder="Search for nearest library") }}
+								{{ form.postcode (class_='form-control',placeholder="Enter Your Post Code ") }}
+								{{ form.submit      (method='post',class_='form-control',placeholder="Search for nearest library") }}
 							</form>
 							{% if dataisentered %}
 								{% for Data in range(0, Entryid) %}
 								
 									<ul class="search-results">
 										<li>
-											<h3><a><span class="result-title">{{ booktitle[Data] }}</span></a></h3>
+											<h3><a><span class="result-title">BranchName :{{BranchName[Data]}}<br></span></a></h3>
 											<p class="search-description">
-											BranchName :        {{BranchName[Data]}}<br>
+											
 											WiFiAvailability :  {{WiFiAvailability[Data]}}<br>
 											AddressLine1 :      {{AddressLine1[Data]}}<br>
 											Postcode:           {{Postcode[Data]}}<br>

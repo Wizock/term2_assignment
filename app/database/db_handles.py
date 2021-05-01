@@ -94,7 +94,7 @@ def libquery(postcode, element):
   curs = db.cursor()
   curs.row_factory = lambda cursor, row: row[0]
   return_list = []
-  for var in curs.execute(f''' SELECT {element}  FROM library WHERE "Address Postcode" = {postcode}'''):
+  for var in curs.execute(f''' SELECT "{element}"  FROM library WHERE "Address Postcode" = {postcode}'''):
       return_list.append(var)
   return return_list
 

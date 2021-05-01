@@ -12,9 +12,9 @@ class EntryForm(FlaskForm):
     n_hrs       = IntegerField('hours')
     n_pages     = IntegerField('pages')
     remember_me = BooleanField('Remember Me')
-    submit      = SubmitField('Complete entry')
-
-class lib(FlaskForm):
-    
     postcode = StringField('postcode')
-    submit = SubmitField('Complete entry')
+    submit      = SubmitField('Complete entry')
+    
+
+
+    

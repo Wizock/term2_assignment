@@ -6,7 +6,7 @@ from app.database import db_var
 from sqlite3.dbapi2 import Cursor
 from flask import Blueprint, render_template
 from flask.globals import request, session
-from .entry_form import EntryForm, lib
+from .entry_form import EntryForm
 import datetime
 from app.database.db_handles import libquery, nOflibs
 from flask import Flask, render_template, request, redirect, Blueprint
@@ -103,22 +103,22 @@ def list():
 @dashboard.route('/library', methods=["GET", "POST"])
 def library():
     if request.method == "POST":
-        form = lib()
-        postcodevar  = request.forms['postcode']
-        Entryid = nOflibs(postcodevar)
+        form = EntryForm()
+        postcodevar  = request.form['postcode']
+        Entryid = (nOflibs(postcodevar)-1)
         return render_template(
             "library/library.html",
             form = form,
             dataisentered=True ,
             Entryid=Entryid ,
             postcode = postcodevar,
-            BranchName         =  libquery(postcodevar,'BranchName'         ),
-            WiFiAvailability   =  libquery(postcodevar,'WiFiAvailability'   ),
-            AddressLine1       =  libquery(postcodevar,'AddressLine1'       ),
-            Postcode           =  libquery(postcodevar,'Postcode'           ),
+            BranchName         =  libquery(postcodevar,'Branch Name'         ),
+            WiFiAvailability   =  libquery(postcodevar,'WiFi Availability'   ),
+            AddressLine1       =  libquery(postcodevar,'Address Line 1'       ),
+            Postcode           =  libquery(postcodevar,'Adress Postcode'    ),
             Contact            =  libquery(postcodevar,'Contact'            ),
-            BranchManagerName  =  libquery(postcodevar,'BranchManagerName'  ),
-            BranchManagerEmail =  libquery(postcodevar,'BranchManagerEmail' ),
+            BranchManagerName  =  libquery(postcodevar,'Branch Manager Name'  ),
+            BranchManagerEmail =  libquery(postcodevar,'Branch Manager Email' ),
             Phone              =  libquery(postcodevar,'Phone'              ),
             Monday             =  libquery(postcodevar,'Monday'             ),
             Tuesday            =  libquery(postcodevar,'Tuesday'            ),
@@ -129,11 +129,11 @@ def library():
             Sunday             =  libquery(postcodevar,'Sunday'             ),
             )
     else:
-        form = lib()
+        form = EntryForm()
         return render_template("library/library.html",form=form,dataisentered=False)
 
-# @dashboard.route("/debug")
-# def debug():
-#     print(nOfRecords())
+@dashboard.route("/debug")
+def debug():
+    BranchName =  libquery("4212",'BranchName'),
 
-#     return str(nOfRecords())
+    return str(BranchName)
