@@ -10,11 +10,6 @@
 	<link href="/static/cue/css/layout-medium.css" media="only all and (min-width: 43em) and (max-width: 65em)" rel="stylesheet" type="text/css">
 	<link href="/static/cue/css/layout-large.css" media="only all and (min-width: 65em)" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/static/cue/images/favicon.ico">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 	<link rel="stylesheet" type="text/css" href="/static/theme/agency.css" media="all">
 </head>
 
@@ -90,40 +85,24 @@
 						<div class="box-sizing">
 
 							<h1>List of books read</h1>
-							<h5>Title</h5>
-							<form method='post'>
-								{{ form.postcode (class_='form-control',placeholder="Enter Your Post Code ") }}<br>
-								{{ form.submit   (method='post',class_='form-control',placeholder="Search for nearest library") }}
-							</form>
-							{% if dataisentered %}
-								{% for Data in range(0, Entryid) %}
+							{% for Data in range(0, Entryid) %}
 								
 									<ul class="search-results">
 										<li>
-											<h3><a><span class="result-title">BranchName :{{BranchName[Data]}}<br></span></a></h3>
+											<h3><a><span class="result-title">{{ booktitle[Data] }}</span></a></h3>
 											<p class="search-description">
+											Author: {{bookAuthor[Data]}}<br>
+											Genre: {{genre[Data]}}<br>
+											Library Borrowed From: {{libraryName[Data]}}<br>
+											Hours Spent Reading: {{Numberofhours[Data]}}<br>
+											Number of pages in book: {{Numberofpages[Data]}}<br>
 											
-											WiFiAvailability :  {{WiFiAvailability[Data]}}<br>
-											AddressLine1 :      {{AddressLine1[Data]}}<br>
-											Postcode:           {{Postcode[Data]}}<br>
-											Contact:            {{Contact[Data]}}<br>
-											BranchManagerName:  {{BranchManagerName[Data]}}<br>
-											BranchManagerEmail: {{BranchManagerEmail[Data]}}<br>
-											Phone:              {{Phone[Data]}}<br>
-											Monday:             {{Monday[Data]}}<br>
-											Tuesday:            {{Tuesday[Data]}}<br>
-											Wednesday:          {{Wednesday[Data]}}<br>
-											Thursday:           {{Thursday[Data]}}<br>
-											Friday:             {{Friday[Data]}}<br>
-											Saturday:           {{Saturday[Data]}}<br>
 											</p>
-											
+											<p class="meta">finished on day:{{date[Data] }}</p>
 										</li>
 									</ul>
 								{% endfor %}
-							{% else %}
-							<h1></h1>
-							{% endif %}
+														
 						</div>
 					</div>
 				</div>
